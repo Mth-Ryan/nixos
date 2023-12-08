@@ -1,0 +1,125 @@
+# Author : Mateus Ryan<mthryan@protonmail.com>
+
+"ui.linenr.selected" = "base4"
+"ui.text.focus" = { fg = "base15", modifiers= ["bold"] }
+"ui.menu" = { fg = "base4", bg = "base1" }
+"ui.menu.selected" = { fg = "base1", bg = "base15" }
+"ui.virtual.whitespace" = "base1"
+
+"info" = "base4"
+"hint" = "base4"
+
+# background color
+
+# status bars, panels, modals, autocompletion
+"ui.statusline" = "base2"
+"ui.statusline.inactive" = "base1"
+"ui.popup" = { bg = "base1" }
+"ui.window" = "base2"
+"ui.help" = { fg = "base4", bg = "base1" }
+"ui.virtual.indent-guide" = "base2"
+
+# active line, highlighting
+"ui.selection" = { bg = "base2" }
+"ui.cursor.match" = { fg = "base0", bg = "base11" }
+"ui.cursorline" = { bg = "base5" }
+
+# comments, nord3 based lighter color
+"comment" = { fg = "base3", modifiers = ["italic"] }
+"ui.linenr" = "base2"
+
+# cursor, variables, constants, attributes, fields
+"ui.cursor.primary" = { fg = "base0", bg = "base5" }
+"attribute" = "base9"
+"variable"  = "base4"
+"constant"  = "base13"
+"variable.builtin" = "base14"
+"constant.builtin" = "base14"
+"namespace" = "base5"
+
+# base text, punctuation
+"ui.text" = "base4"
+"punctuation" = "base4"
+
+# classes, types, primitives
+"type" = "base13"
+"type.builtin" = "base13"
+"type.enum.variant" = "base15"
+"label" = "base9"
+
+# declaration, methods, routines
+"constructor" = "base15"
+"function" = "base15"
+"function.macro" = "base9"
+"function.builtin" = "base14"
+
+# operator, tags, units, punctuations
+"operator" = "base4"
+"tag" = "base12"
+"variable.other.member" = "base15"
+
+# keywords, special
+"keyword" = "base10"
+"keyword.directive" = "base5"
+"keyword.storage.modifier" = "base9"
+"keyword.control.conditional" = "base9"
+"keyword.control.repeat" = "base9"
+"keyword.control.return" = "base10"
+"variable.parameter" = "base4"
+
+# error
+"error" = "base10"
+
+# annotations, decorators
+"special" = "base12"
+"module" = "base12"
+
+# warnings, escape characters, regex
+"warning" = "#ffe97b"
+"constant.character" = "base12"
+"constant.character.escape" = "base5"
+
+# strings
+"string" = "base14"
+
+# integer, floating point
+"constant.numeric" = "base12"
+
+# vcs
+"diff.plus" = "base13"
+"diff.delta" = "#ffe97b"
+"diff.minus" = "base10"
+
+# make diagnostic underlined, to distinguish with selection text.
+"diagnostic.warning" = { underline = { color = "#ffe97b", style = "curl" } }
+"diagnostic.error" = { underline = { color = "base10", style = "curl" } }
+"diagnostic.info" = { underline = { color = "base8", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "base8", style = "curl" } }
+
+# markup highlight, no need for `markup.raw` and `markup.list`, make them to be default
+"markup.heading" = "base11"
+"markup.bold" = { fg = "base5", modifiers = ["bold"] }
+"markup.italic" = { fg = "base5", modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "base9", modifiers = ["underlined"] }
+"markup.link.text" = "base12"
+"markup.quote" = "base14"
+"markup.list" = "base14"
+
+[palette]
+"base0" = "#161616" 
+"base1" = "#262626" 
+"base2" = "#393939" 
+"base3" = "#525252" 
+"base4" = "#dde1e6" 
+"base5" = "#f2f4f8" 
+"base6" = "#ffffff" 
+"base7" = "#08bdba"
+"base8" = "#3ddbd9" 
+"base9" = "#78a9ff" 
+"base10" = "#ee5396" 
+"base11" = "#33b1ff" 
+"base12" = "#ff7eb6" 
+"base13" = "#42be65" 
+"base14" = "#be95ff" 
+"base15" = "#82cfff"

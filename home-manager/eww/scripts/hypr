@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# init workspace
+hyprctl monitors | grep active | awk '{print "Workspace " $3}' | cut -d' ' -f2
+
+workspaces() {
+	if [[ ${1:0:9} == "workspace" ]]; then #set focused workspace
+		echo ${1:11}
+	fi
+}
+
+socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r event; do 
+	workspaces "$event"
+done

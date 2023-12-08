@@ -1,0 +1,130 @@
+(deflisten hypr-workspace "scripts/hypr")
+
+(defpoll hour :interval "1s"
+  "date '+%H'")
+
+(defpoll minutes :interval "1s"
+  "date '+%M'")
+
+(defpoll bat-level :interval "2s"
+  "scripts/bat")
+
+(defwidget launcher []
+  (button :class "launcher"
+          :onclick "~/.config/rofi/launcher.sh &"
+          :space-evenly false
+    "󱄅"))
+    
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "v"
+    (button :class { hypr-workspace == 1 ? "workspace-active" :  "workspace" }
+            :onclick "hyprctl dispatch workspace 1"
+        "")
+    (button :class { hypr-workspace == 2 ? "workspace-active" :  "workspace" }
+            :onclick "hyprctl dispatch workspace 2"
+        "󰈹")
+    (button :class { hypr-workspace == 3 ? "workspace-active" :  "workspace" } 
+            :onclick "hyprctl dispatch workspace 3"
+        "󰉋")
+    (button :class { hypr-workspace == 4 ? "workspace-active" :  "workspace" } 
+            :onclick "hyprctl dispatch workspace 4"
+        "")
+    (button :class { hypr-workspace == 5 ? "workspace-active" :  "workspace" } 
+            :onclick "hyprctl dispatch workspace 5"
+        "󰙯")
+    (button :class { hypr-workspace == 6 ? "workspace-active" :  "workspace" } 
+            :onclick "hyprctl dispatch workspace 6"
+        "")))
+
+(defwidget bluetooth-icon []
+  (box :class { true ? "bluetooth-icon-connected" :
+                true ? "bluetooth-icon" :
+                "bluetooth-icon-off"}
+       :orientation "v"
+    { true ? "󰂱" : true ? "󰂯" : "󰂲"}))
+
+(defwidget sound-icon []
+  (box :class { true ? "sound-icon" :
+                "sound-icon-false" }
+       :orientation "v"
+    { true ? "󰋋" : "󰟎"}))
+
+(defwidget battery-icon []
+  (box :class { bat-level >= 20 ? "battery-icon" : "battery-icon-low" }
+       :orientation "v"
+    { bat-level >= 95 ? "󰁹" :
+      bat-level >= 90 ? "󰂁" :
+      bat-level >= 80 ? "󰂁" :
+      bat-level >= 70 ? "󰂀" :
+      bat-level >= 60 ? "󰁿" :
+      bat-level >= 50 ? "󰁾" :
+      bat-level >= 40 ? "󰁽" :
+      bat-level >= 30 ? "󰁼" :
+      bat-level >= 20 ? "󰁻" :
+      "󰁺"}))
+    
+(defwidget battery-percent []
+  (box :class "battery-percent"
+       :orientation "v"
+    "${bat-level}%"))
+
+(defwidget battery []
+  (box :class "battery"
+       :space-evenly false
+       :spacing -2
+       :orientation "v"
+    (battery-icon)
+    (battery-percent)))
+
+(defwidget clock []
+  (box :class "clock"
+       :orientation "v"
+    hour
+    minutes))
+
+(defwidget system []
+  (button :class "system-button"
+    (box :class "system"
+         :space-evenly false
+         :orientation "v"
+      (bluetooth-icon)
+      (sound-icon)
+      (battery))))
+    
+(defwidget top []
+  (box :class "top"
+       :space-evenly false
+       :orientation "v"
+    (launcher)
+    (workspaces)))
+
+    
+(defwidget bottom []
+  (box :class "bottom"
+       :space-evenly false
+       :valign "end"
+       :orientation "v"
+    (system)
+    (clock)))
+
+(defwidget bar []
+  (centerbox :class "bar"
+             :orientation "v"
+    (top)
+    ""
+    (bottom)))
+
+(defwindow bar
+           :exclusive true
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "0%"
+                               :width "48px"
+                               :height "100%"
+                               :anchor "left center")
+           :stacking "fg"
+           :reserve (struts :distance "20px" :side "left")
+           :windowtype "dock"
+           :wm-ignore false
+  (bar))

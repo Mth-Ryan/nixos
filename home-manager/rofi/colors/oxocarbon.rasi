@@ -1,0 +1,16 @@
+/**
+ *
+ * Author : Mateus Ryan (Mth-Ryan)
+ * Github : @Mth-Ryan
+ * 
+ * Colors
+ **/
+
+* {
+    background:     #161616F0;
+    background-alt: #3939397F;
+    foreground:     #dde1e6FF;
+    selected:       #82cfffFF;
+    active:         #98C379FF;
+    urgent:         #E06C75FF;
+}

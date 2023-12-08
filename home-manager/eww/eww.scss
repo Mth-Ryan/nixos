@@ -1,0 +1,105 @@
+$base00: #161616;
+$base01: #262626;
+$base02: #393939;
+$base03: #525252;
+$base04: #dde1e6;
+$base05: #f2f4f8;
+$base06: #ffffff;
+$base07: #08bdba;
+$base08: #3ddbd9;
+$base09: #78a9ff;
+$base0A: #ee5396;
+$base0B: #33b1ff;
+$base0C: #ff7eb6;
+$base0D: #42be65;
+$base0E: #be95ff;
+$base0F: #82cfff;
+
+$base00-70: rgba(22, 22, 22, 0.7);
+$base02-30: rgba(57, 57, 57, 0.4);
+
+* {
+  all: unset;
+}
+
+.bar {
+  font-family: Iosevka Nerd Font Mono;
+  background-color: $base00-70;
+  color: $base05;
+}
+
+.top {
+}
+
+.launcher {
+  background-color: $base02-30;
+  border-radius: 5px;
+  margin: 5px;
+  color: $base09;
+  font-size: 32px;
+}
+
+.workspaces {
+  color: $base03;
+  font-size: 24px;
+}
+
+.workspace-active {
+  color: $base05;
+}
+
+.bluetooth-icon {
+  font-size: 26px;
+  color: $base05;
+}
+
+.bluetooth-icon-connected {
+  font-size: 26px;
+  color: $base0B;
+}
+
+.bluetooth-icon-off {
+  font-size: 26px;
+  color: $base03;
+}
+
+.sound-icon {
+  font-size: 22px;
+}
+
+.sound-icon-off {
+  font-size: 22px;
+  color: $base03;
+}
+
+.battery {
+  margin-bottom: 4px;
+}
+
+.battery-icon {
+  font-size: 22px;
+  color: $base0D;
+}
+
+.battery-icon-low {
+  font-size: 22px;
+  color: $base0A;
+}
+
+.battery-percent {
+  font-size: 11px;
+  color: $base03;
+}
+
+.clock {
+  color: $base05;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.system {
+  background-color: $base02-30;
+  border-radius: 5px;
+  margin: 5px;
+}
