@@ -17,6 +17,8 @@ $base0F: #82cfff;
 
 $base00-70: rgba(22, 22, 22, 0.7);
 $base02-30: rgba(57, 57, 57, 0.4);
+$base0B-30: rgba(51, 177, 255, 0.6);
+$base0D-30: rgba(66, 190, 101, 0.6);
 
 * {
   all: unset;
@@ -28,10 +30,10 @@ $base02-30: rgba(57, 57, 57, 0.4);
   color: $base05;
 }
 
-.top {
+.bar-top {
 }
 
-.launcher {
+.bar-launcher {
   background-color: $base02-30;
   border-radius: 5px;
   margin: 5px;
@@ -39,67 +41,203 @@ $base02-30: rgba(57, 57, 57, 0.4);
   font-size: 32px;
 }
 
-.workspaces {
+.bar-workspaces {
   color: $base03;
   font-size: 24px;
 }
 
-.workspace-active {
+.bar-workspace-active {
   color: $base05;
 }
 
-.bluetooth-icon {
+.bar-bluetooth-icon {
   font-size: 26px;
   color: $base05;
 }
 
-.bluetooth-icon-connected {
+.bar-bluetooth-icon-connected {
   font-size: 26px;
   color: $base0B;
 }
 
-.bluetooth-icon-off {
+.bar-bluetooth-icon-off {
   font-size: 26px;
   color: $base03;
 }
 
-.sound-icon {
+.bar-sound-icon {
   font-size: 22px;
 }
 
-.sound-icon-off {
+.bar-sound-icon-off {
   font-size: 22px;
   color: $base03;
 }
 
-.battery {
+.bar-battery {
   margin-bottom: 4px;
 }
 
-.battery-icon {
+.bar-battery-icon {
   font-size: 22px;
   color: $base0D;
 }
 
-.battery-icon-low {
+.bar-battery-icon-low {
   font-size: 22px;
   color: $base0A;
 }
 
-.battery-percent {
+.bar-battery-percent {
   font-size: 11px;
   color: $base03;
 }
 
-.clock {
+.bar-clock {
   color: $base05;
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.system {
+.bar-system {
   background-color: $base02-30;
   border-radius: 5px;
   margin: 5px;
+}
+
+.menu {
+  font-family: Iosevka Nerd Font Mono;
+  background-color: $base00-70;
+  color: $base04;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.menu-top {
+  margin-bottom: 5px;
+}
+
+.menu-middle {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.menu-bottom {
+  margin-top: 5px;
+}
+
+.menu-date {
+  background-color: $base02-30;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.menu-date-hour {
+  color: $base05;
+  font-weight: 300;
+  font-size: 32px;
+}
+
+.menu-wifi-bluetooth {
+  margin-left: 5px;
+}
+
+.menu-wifi {
+  background-color: $base02-30;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.menu-wifi-active {
+  background-color: $base0D;
+  color: $base00;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.menu-wifi-icon {
+  font-family: Iosevka Nerd Font;
+  font-size: 26px;
+}
+
+.menu-bluetooth {
+  font-family: Iosevka Nerd Font;
+  background-color: $base02-30;
+  font-size: 26px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.menu-bluetooth-active {
+  font-family: Iosevka Nerd Font;
+  background-color: $base0B;
+  color: $base00;
+  font-size: 26px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.menu-slider-icon {
+  font-size: 20px;
+}
+
+.menu-slider-bar {
+  background-color: $base0F;
+}
+
+.menu-sliders {
+  margin-bottom: 5px;
+  background-color: $base02-30;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.menu-music-player {
+  margin-top: 5px;
+  background-color: $base02-30;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.menu-music-icon {
+  font-size: 30px;
+  padding: 0 10px;
+  color: $base0F;
+}
+
+.menu-music-controlls {
+  font-size: 28px;
+}
+
+.menu-lock-button {
+  font-family: Iosevka Nerd Font;
+  font-size: 26px;
+  background-color: $base02-30;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.menu-suspend-button {
+  font-family: Iosevka Nerd Font;
+  font-size: 26px;
+  background-color: $base02-30;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.menu-restart-button {
+  font-family: Iosevka Nerd Font;
+  font-size: 26px;
+  background-color: $base02-30;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.menu-power-button {
+  font-family: Iosevka Nerd Font;
+  font-size: 26px;
+  background-color: $base02-30;
+  border-radius: 5px;
+  margin-left: 5px;
 }

@@ -19,61 +19,15 @@
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
-  colorScheme = {
-    slug = "oxocarbon";
-    name = "Oxocarbon";
-    author = "Nyoom Engineering (https://github.com/nyoom-engineering)";
-    colors = {
-      base00 = "#161616";
-      base01 = "#262626";
-      base02 = "#393939";
-      base03 = "#525252";
-      base04 = "#dde1e6";
-      base05 = "#f2f4f8";
-      base06 = "#ffffff";
-      base07 = "#08bdba";
-      base08 = "#3ddbd9";
-      base09 = "#78a9ff";
-      base0A = "#ee5396";
-      base0B = "#33b1ff";
-      base0C = "#ff7eb6";
-      base0D = "#42be65";
-      base0E = "#be95ff";
-      base0F = "#82cfff";
-
-      # extra for terminal theme
-      yellow = "#ffe97b";
-      blue = "#33b1ff";
-    };
-  };
-
   home.packages = [
+    # pkgs.dotnet-sdk_8
+    # pkgs.nodejs_20
+    # pkgs.go
+    # pkgs.rustup
+    pkgs.sbcl
+
     (pkgs.nerdfonts.override { fonts = [ "Iosevka" "FiraCode" ]; })
   ];
-
-  programs.tmux = {
-    enable = true;
-    prefix = "C-x";
-    customPaneNavigationAndResize = true;
-    mouse = true;
-    extraConfig = ''
-      set -s escape-time 0
-      set -g default-terminal "tmux-256color" # true colors mode
-      set -ag terminal-overrides ",xterm-256color:RGB"
-
-      unbind %
-      unbind '"'
-      bind '/' split-window -h
-      bind '-' split-window -v
-
-      set -g status-position bottom
-      set -g status-style bg="#${config.colorScheme.colors.base00}"
-      set -g status-left "#[fg=#${config.colorScheme.colors.base00},bold,bg=#${config.colorScheme.colors.base0F}] λ #[fg=#${config.colorScheme.colors.base0F},bold,bg=#${config.colorScheme.colors.base02}] #S #[bg=#${config.colorScheme.colors.base00}] "
-      setw -g window-status-current-format "#[fg=#${config.colorScheme.colors.base06},bold]#I:#W"
-      setw -g window-status-format "#[fg=#${config.colorScheme.colors.base03}]#I:#W"
-      set -g status-right "#[fg=#${config.colorScheme.colors.base04},bold,bg=#${config.colorScheme.colors.base03}]  #[fg=#${config.colorScheme.colors.base04},bg=#${config.colorScheme.colors.base02}] %d/%m #[bg=#${config.colorScheme.colors.base00}] #[fg=#${config.colorScheme.colors.base04},bold,bg=#${config.colorScheme.colors.base03}]  #[fg=#${config.colorScheme.colors.base04},bg=#${config.colorScheme.colors.base02}] %H:%M:%S "
-    '';
-  };
 
   programs.git = {
     enable = true;
@@ -84,6 +38,9 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    shellAliases = {
+      lisp = "rlwrap sbcl";
+    };
     zplug = {
       enable = true;
       plugins = [
@@ -102,39 +59,14 @@
     '';
   };
 
-  programs.kitty = {
-    enable = true;
-    settings = {
-      #font_family = "Iosevka Nerd Font";
-      cursor_shape = "block";
-      background_opacity = "0.94";
-      enable_audio_bell = "no";
-      window_padding_width = "5";
-      confirm_os_window_close = "0";
-      foreground = "#${config.colorScheme.colors.base05}";
-      background = "#${config.colorScheme.colors.base00}";
-      color0 = "#${config.colorScheme.colors.base00}";
-      color8 = "#${config.colorScheme.colors.base03}";
-      color1 = "#${config.colorScheme.colors.base0A}";
-      color9 = "#${config.colorScheme.colors.base0A}";
-      color2 = "#${config.colorScheme.colors.base0D}";
-      color10 = "#${config.colorScheme.colors.base0D}";
-      color3 = "#${config.colorScheme.colors.yellow}";
-      color11 = "#${config.colorScheme.colors.yellow}";
-      color4 = "#${config.colorScheme.colors.blue}";
-      color12 = "#${config.colorScheme.colors.blue}";
-      color5 = "#${config.colorScheme.colors.base0C}";
-      color13 = "#${config.colorScheme.colors.base0C}";
-      color6 = "#${config.colorScheme.colors.base08}";
-      color14 = "#${config.colorScheme.colors.base08}";
-      color7 = "#${config.colorScheme.colors.base04}";
-      color15 = "#${config.colorScheme.colors.base05}";
-    };
-  };
-
   home.file = {
     ".config/helix" = {
       source = ./helix;
+      recursive = true;
+    };
+
+    ".config/tmux" = {
+      source = ./tmux;
       recursive = true;
     };
 
@@ -150,6 +82,11 @@
 
     ".config/eww" = {
       source = ./eww;
+      recursive = true;
+    };
+
+    ".config/kitty" = {
+      source = ./kitty;
       recursive = true;
     };
 

@@ -6,52 +6,58 @@
 (defpoll minutes :interval "1s"
   "date '+%M'")
 
+(defpoll date :interval "1s"
+  "date '+%b %d, %Y'")
+
 (defpoll bat-level :interval "2s"
   "scripts/bat")
 
+(defpoll volume :interval "1s"
+  "scripts/vol")
+
 (defwidget launcher []
-  (button :class "launcher"
-          :onclick "~/.config/rofi/launcher.sh &"
+  (button :class "bar-launcher"
+          ;; :onclick "~/.config/rofi/launcher.sh"
           :space-evenly false
     "󱄅"))
     
 (defwidget workspaces []
-  (box :class "workspaces"
+  (box :class "bar-workspaces"
        :orientation "v"
-    (button :class { hypr-workspace == 1 ? "workspace-active" :  "workspace" }
+    (button :class { hypr-workspace == 1 ? "bar-workspace-active" :  "bar-workspace" }
             :onclick "hyprctl dispatch workspace 1"
         "")
-    (button :class { hypr-workspace == 2 ? "workspace-active" :  "workspace" }
+    (button :class { hypr-workspace == 2 ? "bar-workspace-active" :  "bar-workspace" }
             :onclick "hyprctl dispatch workspace 2"
         "󰈹")
-    (button :class { hypr-workspace == 3 ? "workspace-active" :  "workspace" } 
+    (button :class { hypr-workspace == 3 ? "bar-workspace-active" :  "bar-workspace" } 
             :onclick "hyprctl dispatch workspace 3"
         "󰉋")
-    (button :class { hypr-workspace == 4 ? "workspace-active" :  "workspace" } 
+    (button :class { hypr-workspace == 4 ? "bar-workspace-active" :  "bar-workspace" } 
             :onclick "hyprctl dispatch workspace 4"
         "")
-    (button :class { hypr-workspace == 5 ? "workspace-active" :  "workspace" } 
+    (button :class { hypr-workspace == 5 ? "bar-workspace-active" :  "bar-workspace" } 
             :onclick "hyprctl dispatch workspace 5"
         "󰙯")
-    (button :class { hypr-workspace == 6 ? "workspace-active" :  "workspace" } 
+    (button :class { hypr-workspace == 6 ? "bar-workspace-active" :  "bar-workspace" } 
             :onclick "hyprctl dispatch workspace 6"
         "")))
 
 (defwidget bluetooth-icon []
-  (box :class { true ? "bluetooth-icon-connected" :
-                true ? "bluetooth-icon" :
-                "bluetooth-icon-off"}
+  (box :class { true ? "bar-bluetooth-icon-connected" :
+                true ? "bar-bluetooth-icon" :
+                "bar-bluetooth-icon-off"}
        :orientation "v"
     { true ? "󰂱" : true ? "󰂯" : "󰂲"}))
 
 (defwidget sound-icon []
-  (box :class { true ? "sound-icon" :
-                "sound-icon-false" }
+  (box :class { volume > 0 ? "bar-sound-icon" :
+                "bar-sound-icon-false" }
        :orientation "v"
-    { true ? "󰋋" : "󰟎"}))
+    { volume > 0 ? "󰋋" : "󰟎"}))
 
 (defwidget battery-icon []
-  (box :class { bat-level >= 20 ? "battery-icon" : "battery-icon-low" }
+  (box :class { bat-level >= 20 ? "bar-battery-icon" : "bar-battery-icon-low" }
        :orientation "v"
     { bat-level >= 95 ? "󰁹" :
       bat-level >= 90 ? "󰂁" :
@@ -65,12 +71,12 @@
       "󰁺"}))
     
 (defwidget battery-percent []
-  (box :class "battery-percent"
+  (box :class "bar-battery-percent"
        :orientation "v"
     "${bat-level}%"))
 
 (defwidget battery []
-  (box :class "battery"
+  (box :class "bar-battery"
        :space-evenly false
        :spacing -2
        :orientation "v"
@@ -78,14 +84,15 @@
     (battery-percent)))
 
 (defwidget clock []
-  (box :class "clock"
+  (box :class "bar-clock"
        :orientation "v"
     hour
     minutes))
 
 (defwidget system []
-  (button :class "system-button"
-    (box :class "system"
+  (button :class "bar-system-button"
+          :onclick "eww open --toggle menu"
+    (box :class "bar-system"
          :space-evenly false
          :orientation "v"
       (bluetooth-icon)
@@ -93,7 +100,7 @@
       (battery))))
     
 (defwidget top []
-  (box :class "top"
+  (box :class "bar-top"
        :space-evenly false
        :orientation "v"
     (launcher)
@@ -101,7 +108,7 @@
 
     
 (defwidget bottom []
-  (box :class "bottom"
+  (box :class "bar-bottom"
        :space-evenly false
        :valign "end"
        :orientation "v"
@@ -114,6 +121,127 @@
     (top)
     ""
     (bottom)))
+
+(defwidget menu-date []
+  (box :class "menu-date"
+       :space-everly false
+       :orientation "v"
+    (box :class "menu-date-hour"
+         :space-everly false
+         :orientation "v"
+      "${hour}:${minutes}")
+    (box :class "menu-date-date"
+         :space-everly false
+         :orientation "v"
+      date)))
+
+(defwidget menu-wifi-bluetooth []
+  (box :class "menu-wifi-bluetooth"
+       :space-everly false
+       :orientation "v"
+    (button :class "menu-wifi-active"
+      (box :class "menu-wifi-container"
+           :space-everly false
+           :orientation "v"
+        (box :class "menu-wifi-icon"
+             :space-everly false
+             :orientation "v"
+          "󰖩")
+        "Mercusys"))
+    (button :class "menu-bluetooth-active"
+      "󰂱"))) 
+
+
+(defwidget menu-slider []
+  (box :class "menu-slider"
+       :space-everly false
+       :orientation "h"
+    (box :class "menu-slider-icon"
+          :space-everly false
+          :orientation "v"
+       "󰋋")
+    (box :class "menu-slider-bar"
+         :space-everly true
+         :orientation "v"
+       "")))
+      
+(defwidget menu-sliders []
+  (box :class "menu-sliders"
+       :space-everly false
+       :orientation "v"
+    (menu-slider)
+    (menu-slider)))
+
+(defwidget menu-player []
+  (box :class "menu-music-player"
+       :space-everly false
+       :orientation "h"
+      (box :class "menu-music-icon"
+           :space-everly false
+           :halign "start"
+           :orientation "h"
+          "󰎈")
+      (box :class "menu-music-title"
+           :space-everly false
+           :halign "start"
+           :orientation "h"
+          "Wind of Change")
+      (box :class "menu-music-controlls"
+           :space-everly false
+           :orientation "h"
+          (button :class "menu-music-controll"
+            "")
+          (button :class "menu-music-controll"
+            { true ? "" : "" }) 
+          (button :class "menu-music-controll"
+            ""))))
+
+(defwidget menu-top []
+  (box :class "menu-top"
+       :space-everly false
+       :orientation "h"
+    (menu-date)
+    (menu-wifi-bluetooth)))
+
+(defwidget menu-middle []
+  (box :class "menu-middle"
+       :space-everly false
+       :orientation "v"
+    (menu-sliders)
+    (menu-player)))
+
+(defwidget menu-bottom []
+  (box :class "menu-bottom"
+       :space-everly false
+       :orientation "h"
+    (button :class "menu-lock-button"
+      "󰌾")
+    (button :class "menu-suspend-button"
+      "󰤄")
+    (button :class "menu-restart-button"
+      "󰜉")
+    (button :class "menu-power-button"
+      "󰐥")))
+
+(defwidget menu []
+  (centerbox :class "menu"
+             :orientation "v"
+    (menu-top)
+    (menu-middle)
+    (menu-bottom)))
+
+(defwindow menu
+           :exclusive false
+           :monitor 0
+           :geometry (geometry :x "10px"
+                               :y "10px"
+                               :height "400px"
+                               :width "400px"
+                               :anchor "left bottom")
+           :stacking "fg"
+           :windowtype "dock"
+           :wm-ignore true
+  (menu))
 
 (defwindow bar
            :exclusive true
